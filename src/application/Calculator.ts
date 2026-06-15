@@ -223,6 +223,7 @@ export class Calculator {
             this.display.renderHistory(this.formatter.formatForDisplay(this.left) + this.operator);
 
           } catch (error) {
+            // 0徐算の場合 
             if (error instanceof DivisionByZeroError) {
               console.error(`[0徐算エラー] ${Config.ERROR_MESSAGE.DIVIDE_BY_ZERO}`);
             }
@@ -307,8 +308,8 @@ export class Calculator {
    * 全消去
    */
   public handleAllClear(): void {
+    // エラーからの回復
     if (this.state === CalcState.Error) {
-      // エラーからの回復
       this.left = null;
       this.operator = null;
       this.buffer.clear();

@@ -17,7 +17,7 @@ export class InputBuffer {
     //1. 最大桁数を超える場合、入力は無視
     if (this.digitCount() >= this.maxDigits) {
       //処理なし
-      console.error(`${Config.ERROR_MESSAGE.MAX_DIGITS} value：${this.value}`);
+      console.error(`[入力エラー]${Config.ERROR_MESSAGE.MAX_DIGITS}`);
       return;
     }
 
@@ -25,7 +25,7 @@ export class InputBuffer {
     if (this.value === "0") {
       //「0」の次に連続して「0」の入力不可（「00」はNG）
       if (d === 0) {
-        console.error(`${Config.ERROR_MESSAGE.NOT_ALLOWED_INPUT} value：${this.value}`);
+        console.error(`[入力エラー]${Config.ERROR_MESSAGE.NOT_ALLOWED_INPUT}`);
         return;
       }
       //「1-9」が入力された場合、「0」を消して上書き
@@ -44,11 +44,11 @@ export class InputBuffer {
   public pushDecimal(): void {
     //1. 小数点が既に入力済み、マイナス符号のみ、または最大桁数超過の場合は入力を無視
     if (this.digitCount() >= this.maxDigits) {
-      console.error(`${Config.ERROR_MESSAGE.MAX_DIGITS} value：${this.value}`);
+      console.error(`[入力エラー]${Config.ERROR_MESSAGE.MAX_DIGITS}`);
       return;
     }
     else if (this.value.includes(".") || this.value === "-") {
-      console.error(`${Config.ERROR_MESSAGE.NOT_ALLOWED_INPUT} value：${this.value}`);
+      console.error(`[入力エラー]${Config.ERROR_MESSAGE.NOT_ALLOWED_INPUT}`);
       return;
     }
 
@@ -122,27 +122,3 @@ export class InputBuffer {
     return this.value.length === 0;
   }
 }
-
-// // --- 動作確認 ---
-// console.log("=== テスト1: 通常の追加 ===");
-// const buffer1 = new InputBuffer("1", 8);
-// buffer1.pushDigit(5); // 5を追加
-// buffer1.pushDecimal(); // 小数点を追加
-// buffer1.pushDigit(3); // 3を追加
-// console.log("結果（15.3 になるはず）:", buffer1.toNumber());
-
-
-// console.log("\n=== テスト2: 0の連続入力制限 ===");
-// const buffer2 = new InputBuffer("0", 8);
-// buffer2.pushDigit(0); // 0のあとに0を追加しようとする（ログに「入力不可」と出るはず）
-// console.log("結果（0のままのはず）:", buffer2.toNumber());
-
-// buffer2.pushDigit(5); // 0のあとに5を追加（0が消えて5に上書きされるはず）
-// console.log("結果（5 に上書きされるはず）:", buffer2.toNumber());
-
-
-// console.log("\n=== テスト3: 最大8桁の制限 ===");
-// const buffer3 = new InputBuffer("12345678", 8); // すでに8桁
-// console.log("現在の桁数:", buffer3.digitCount()); // 8桁
-// buffer3.pushDigit(9); // 9桁目を追加しようとする（ログに「最大桁数超過エラー」と出るはず）
-// console.log("結果（8桁のまま、12345678 のはず）:", buffer3.toNumber());

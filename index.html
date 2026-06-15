@@ -17,34 +17,35 @@
     </div>
 
     <div class="keys">
-      <!-- data-key で意味付け -->
-      <div class="numbers">
-        <button data-key="9">9</button>
-        <button data-key="8">8</button>
-        <button data-key="7">7</button>
-        <button data-key="6">6</button>
-        <button data-key="5">5</button>
-        <button data-key="4">4</button>
-        <button data-key="3">3</button>
-        <button data-key="2">2</button>
-        <button data-key="1">1</button>
-        <button data-key="C">C</button>
-        <button data-key="op:.">.</button>
-        <button data-key="0">0</button>
-      </div>
+      <div class="buttons-upper">
+        <!-- data-key で意味付け -->
+        <div class="numbers">
+          <button data-key="9">9</button>
+          <button data-key="8">8</button>
+          <button data-key="7">7</button>
+          <button data-key="6">6</button>
+          <button data-key="5">5</button>
+          <button data-key="4">4</button>
+          <button data-key="3">3</button>
+          <button data-key="2">2</button>
+          <button data-key="1">1</button>
+          <button data-key="C">C</button>
+          <button data-key="op:.">.</button>
+          <button data-key="0">0</button>
+        </div>
 
-      <!-- ... 他の数字/演算子/機能キー ... -->
-      <div class="operators">
-        <button data-key="op:/">÷</button>
-        <button data-key="op:*">×</button>
-        <button data-key="op:-">-</button>
-        <button data-key="op:+">+</button>
+        <!-- ... 他の数字/演算子/機能キー ... -->
+        <div class="operators">
+          <button data-key="op:/">÷</button>
+          <button data-key="op:*">×</button>
+          <button data-key="op:-">-</button>
+          <button data-key="op:+">+</button>
+        </div>
       </div>
+      <!-- イコールボタン -->
+      <button class="equal" data-key="eq">=</button>
     </div>
-    <!-- イコールボタン -->
-    <button class="equal" data-key="eq">=</button>
   </div>
-
 
   <script type="module" src="/src/main.ts"></script>
 </body>

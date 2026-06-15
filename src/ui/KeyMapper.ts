@@ -2,7 +2,7 @@ import { Operation } from "../domain/type";
 import type { KeyToken } from "../domain/type";
 
 /**
- * DOM取得したデータをKeyTokenに振り分け
+ * DOM取得したデータをKeyTokenに振り分けのクラス
  */
 export class KeyMapper {
   private keyMap: Map<string, KeyToken> = new Map();
@@ -21,6 +21,11 @@ export class KeyMapper {
     this.keyMap.set("C", { kind: "clear" });
   }
 
+  /**
+   * 取得したDOM要素を対応するKeyTokenに振り分ける
+   * @param target 引数：クリックイベントの発生源
+   * @returns 対応するKeyToken。該当するデータがない場合はnull
+   */
   public resolve(target: EventTarget): KeyToken | null {
     // target が本当に HTML 要素（HTMLElement）か安全チェック
     if (!(target instanceof HTMLElement)) {

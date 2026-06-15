@@ -44,26 +44,3 @@ export class NumberFormatter {
     return true;
   }
 }
-
-// // --- 動作確認 ---
-// // インスタンスを生成（最大桁数として 8 を渡す）
-// const formatter = new NumberFormatter(this.maxDigits);
-
-// console.log("=== テスト1: 通常表記（最大桁数以内） ===");
-// console.log("整数 (12345)     ➔", formatter.formatForDisplay(12345));     // 12345
-// console.log("小数 (123.45)    ➔", formatter.formatForDisplay(123.45));    // 123.45
-// console.log("ジャスト8桁      ➔", formatter.formatForDisplay(12345678));  // 12345678
-
-// console.log("\n=== テスト2: 桁数オーバーによる指数表記 ===");
-// // 9桁の数値を渡してみる
-// console.log("9桁 (123456789)  ➔", formatter.formatForDisplay(123456789));
-// // 期待される表示: 1.2345679e+8 (小数点前1桁 + 後7桁 = 合計8桁の数字 + 指数表記)
-
-// // 巨大な数値を渡してみる
-// console.log("巨大な数値       ➔", formatter.formatForDisplay(999999999999));
-// // 期待される表示: 1.0000000e+12 辺り
-
-// console.log("\n=== テスト3: 表示可能範囲のチェック (fits) ===");
-// console.log("通常の数値 (100) ➔ 表示可能？:", formatter.fits(100));       // true
-// console.log("計算不能 (NaN)   ➔ 表示可能？:", formatter.fits(NaN));       // false
-// console.log("無限大 (Infinity)➔ 表示可能？:", formatter.fits(Infinity));  // false

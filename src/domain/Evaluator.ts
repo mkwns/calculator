@@ -7,9 +7,9 @@ import { Operation } from "./type";
 export class Evaluator {
   /**
    * 四則演算の実施
-   * @param a 引数①：1つ目の数値
-   * @param op 引数②：演算子
-   * @param b 引数③：2つ目の数値
+   * @param a 引数①：1つ目の数値(a)
+   * @param op 引数②：演算子(op)
+   * @param b 引数③：2つ目の数値(b)
    * @returns 戻り値：計算結果(number型)
    */
   public compute(a: number, op: Operation, b: number): number {
@@ -36,11 +36,3 @@ export class Evaluator {
     }
   }
 }
-
-// // --- 動作確認 ---
-// const test = new Evaluator;
-// console.log(test.compute(6, Operation.ADD, 2));
-// console.log(test.compute(6, Operation.SUBTRACT, 2));
-// console.log(test.compute(6, Operation.MULTIPLY, 2));
-// console.log(test.compute(6, Operation.DIVIDE, 2));
-// console.log(test.compute(6, Operation.x, 2));

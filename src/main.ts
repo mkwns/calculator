@@ -34,7 +34,8 @@ const calculator = new Calculator(
 );
 
 
-document.querySelectorAll(".keys > button").forEach(btn => {
+// .keysの中にあるbuttonに対してクリックイベントを設定
+document.querySelectorAll(".keys button").forEach(btn => {
   btn.addEventListener("click", e => {
     const token = mapper.resolve(e.target as HTMLElement);
     if (token) {
