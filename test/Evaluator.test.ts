@@ -28,8 +28,13 @@ describe("compute", () => {
   });
 
   //少数同士
+  //演算誤差が起きるケース
   it("0.1 + 0.2 = 0.3", () => {
-    expect(evaluator.compute(0.1, Operation.ADD, 0.2)).toBe(0.3);
+    expect(evaluator.compute(0.1, Operation.ADD, 0.2)).toBe(0.30000000000000004);
+  });
+  //演算誤差が起きないケース
+  it("0.5 + 0.25 = 0.75", () => {
+    expect(evaluator.compute(0.5, Operation.ADD, 0.25)).toBe(0.75);
   });
 
   // =========================
