@@ -10,8 +10,8 @@ export class InputBuffer {
   constructor(private value: string, private readonly maxDigits: number) { }
 
   /**
-   * バッファの末尾に数字を追加
-   * @param d 引数：追加する数字(0~9)
+   * バッファの末尾に数値を追加
+   * @param d 引数：追加する数値(0~9)
    */
   public pushDigit(d: number): void {
     //1. 最大桁数を超える場合、入力は無視
@@ -33,7 +33,7 @@ export class InputBuffer {
       return;
     }
 
-    //3. 通常の追加（最大桁数未満の場合、数字を追加する）
+    //3. 通常の追加（最大桁数未満の場合、数値を追加する）
     this.value += d.toString();
   }
 
@@ -74,7 +74,7 @@ export class InputBuffer {
 
   /**
    * 現在バッファに保持されている桁数の確認
-   * @returns 戻り値：マイナス記号と小数点を除いた数字の桁数
+   * @returns 戻り値：マイナス記号と小数点を除いた数値の桁数
    */
   public digitCount(): number {
     //"." "-" 以外の文字数を取得
@@ -120,5 +120,16 @@ export class InputBuffer {
    */
   public isEmpty(): boolean {
     return this.value.length === 0;
+  }
+
+  /**
+   * ディスプレイ表示用に現在入力中のバッファの値を文字列として取得
+   * @returns 戻り値：バッファの現在の入力文字列
+   */
+  public getBufferString(): string {
+    if (this.isEmpty()) {
+      return "0";
+    }
+    return this.value;
   }
 }

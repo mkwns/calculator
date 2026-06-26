@@ -24,8 +24,8 @@ export class Calculator {
 
 
   /**
-   * 入力ボタンの種類（kind）に応じて、司令塔の適切なメソッドを呼び出す
-   * @param token 引数：入力ボタンの種類を判別するための型
+   * 入力ボタンの種類に応じて、司令塔の適切なメソッドを呼び出す
+   * @param token 引数：入力されたボタンの種類
    */
   public handle(token: KeyToken): void {
     switch (token.kind) {
@@ -51,17 +51,6 @@ export class Calculator {
     }
   }
 
-  /**
-   * ディスプレイ表示用に現在入力中のバッファの値を文字列として取得
-   * @returns 戻り値：バッファの現在の入力文字列
-   */
-  private getBufferString(): string {
-    if (this.buffer.isEmpty()) {
-      return "0";
-    }
-    return (this.buffer as any).value;
-  }
-
 
   /**
    * 数値(0~9)のボタンが押された時の各ステータスごとの処理
@@ -72,7 +61,8 @@ export class Calculator {
     if (this.state === CalcState.Error) {
       this.state = CalcState.InputtingFirst;
       this.buffer.pushDigit(d);
-      this.display.render(this.getBufferString());
+      this.buffer.getBufferString();
+      this.display.render(this.buffer.getBufferString());
       this.display.renderHistory("");
       return;
     }
@@ -111,7 +101,7 @@ export class Calculator {
         this.display.renderHistory("");
         break;
     }
-    this.display.render(this.getBufferString());
+    this.display.render(this.buffer.getBufferString());
   }
 
 
@@ -155,7 +145,7 @@ export class Calculator {
         this.buffer.pushDecimal();
         break;
     }
-    this.display.render(this.getBufferString());
+    this.display.render(this.buffer.getBufferString());
   }
 
   /**
@@ -169,7 +159,7 @@ export class Calculator {
       if (op === Operation.SUBTRACT) {
         this.state = CalcState.Ready;
         this.buffer.pushMinus();
-        this.display.render(this.getBufferString());
+        this.display.render(this.buffer.getBufferString());
         this.display.renderHistory("");
       }
       //「-」以外の入力は無視
@@ -183,7 +173,7 @@ export class Calculator {
         // 「-」はマイナス符号として入力を許可
         if (op === Operation.SUBTRACT) {
           this.buffer.pushMinus();
-          this.display.render(this.getBufferString());
+          this.display.render(this.buffer.getBufferString());
         }
         break;
 
@@ -346,12 +336,12 @@ export class Calculator {
     this.buffer.backspace();
 
     // 画面の表示の更新
-    this.display.render(this.getBufferString());
+    this.display.render(this.buffer.getBufferString());
 
     // 2つ目の数値を入力中の場合、履歴エリアの表示の更新
     if (this.state === CalcState.InputtingSecond) {
       this.display.renderHistory(
-        this.formatter.formatForDisplay(this.left!) + this.operator + this.getBufferString()
+        this.formatter.formatForDisplay(this.left!) + this.operator + this.buffer.getBufferString()
       );
     }
   }

@@ -30,7 +30,7 @@ export class Evaluator {
         return a / b;
 
       default:
-        // 新しい演算子が追加されたのに、ここで処理を忘れている場合、コンパイルエラーになる
+        // Operationで新しい演算子が追加で定義されたのに、switch文の中で処理を忘れている場合、コンパイルエラーになる
         const _exhaustiveCheck: never = op;
         throw new Error(`未対応の演算子：${_exhaustiveCheck}`);
     }
